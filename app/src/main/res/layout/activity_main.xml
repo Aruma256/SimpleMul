@@ -35,7 +35,7 @@
         android:layout_alignParentEnd="true" />
 
     <TextView
-        android:text="TextView"
+        android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/edit_mul"
@@ -47,7 +47,6 @@
         android:textAppearance="@android:style/TextAppearance.Large" />
 
     <Switch
-        android:text="Switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/text_output"
