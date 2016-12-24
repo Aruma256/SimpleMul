@@ -1,14 +1,13 @@
 package com.github.obsproth.simplemul;
 
-public class Formula {
-    public final double valA, valB;
-    public final boolean isMul;
-    public final double ans;
+class Formula {
+    final double valA, valB, ans;
+    final boolean isMul;
 
-    public Formula(double valA, double valB, boolean isMul) {
+    Formula(double valA, double valB, boolean isMul, double ans) {
         this.valA = valA;
         this.valB = valB;
         this.isMul = isMul;
-        this.ans = isMul ? valA * valB : valA / valB;
+        this.ans = ans;
     }
 }
