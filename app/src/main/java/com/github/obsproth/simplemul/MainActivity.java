@@ -2,31 +2,46 @@ package com.github.obsproth.simplemul;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity implements TextWatcher, CompoundButton.OnCheckedChangeListener {
+public class MainActivity extends AppCompatActivity implements TextWatcher, CompoundButton.OnCheckedChangeListener, View.OnClickListener {
 
-    EditText input, mul;
-    TextView output;
-    Switch switchView;
+    private MyRecyclerAdapter adapter;
+    private TextView ansText;
+    private EditText valA, valB;
+    private Switch switchView;
+    private Button button;
+
+    private double a, b, ans;
+    private boolean isMul;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        input = (EditText) findViewById(R.id.edit_input);
-        mul = (EditText) findViewById(R.id.edit_mul);
-        output = (TextView) findViewById(R.id.text_output);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        ansText = (TextView) findViewById(R.id.text_ans);
+        valA = (EditText) findViewById(R.id.edit_val_a);
+        valB = (EditText) findViewById(R.id.edit_val_b);
         switchView = (Switch) findViewById(R.id.switch_view);
+        button = (Button) findViewById(R.id.button);
         //
-        input.addTextChangedListener(this);
-        mul.addTextChangedListener(this);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        adapter = new MyRecyclerAdapter(this);
+        recyclerView.setAdapter(adapter);
+        valA.addTextChangedListener(this);
+        valB.addTextChangedListener(this);
         switchView.setOnCheckedChangeListener(this);
+        button.setOnClickListener(this);
     }
 
     @Override
@@ -47,18 +62,24 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Comp
         update();
     }
 
-    private void update(){
-        double d = 0, m = 0;
+    @Override
+    public void onClick(View view) {
+        adapter.addItem(new Formula(a, b, isMul, ans));
+    }
+
+    private void update() {
         try {
-            d = Double.parseDouble(input.getText().toString());
-            m = Double.parseDouble(mul.getText().toString());
+            a = Double.parseDouble(valA.getText().toString());
+            b = Double.parseDouble(valB.getText().toString());
         } catch (NumberFormatException e) {
         }
-        if (!switchView.isChecked()) {
-            output.setText(String.valueOf(d * m));
+        isMul = !switchView.isChecked();
+        if (isMul) {
+            ans = a * b;
         } else {
-            output.setText(m != 0 ? String.valueOf(d / m) : "");
+            ans = b != 0 ? a / b : Double.NaN;
         }
+        ansText.setText(String.valueOf(ans));
     }
 
 }
