@@ -12,12 +12,13 @@ import java.util.List;
 
 public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.ViewHolder> {
 
+    private RecyclerView recyclerView;
     private List<Formula> dataList;
     private LayoutInflater inflater;
 
     public MyRecyclerAdapter(Context context) {
-        dataList = new ArrayList<>();
-        inflater = LayoutInflater.from(context);
+        this.dataList = new ArrayList<>();
+        this.inflater = LayoutInflater.from(context);
     }
 
     @Override
@@ -39,9 +40,22 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         return dataList.size();
     }
 
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        this.recyclerView = recyclerView;
+    }
+
+    @Override
+    public void onDetachedFromRecyclerView(RecyclerView recyclerView) {
+        super.onDetachedFromRecyclerView(recyclerView);
+        this.recyclerView = null;
+    }
+
     void addItem(Formula formula) {
         dataList.add(formula);
         notifyItemInserted(dataList.size() - 1);
+        recyclerView.scrollToPosition(dataList.size() - 1);
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
