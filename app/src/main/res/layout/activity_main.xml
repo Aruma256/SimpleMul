@@ -46,7 +46,8 @@
             android:inputType="numberDecimal"
             android:ems="10"
             android:id="@+id/edit_val_a"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textAlignment="center" />
 
         <EditText
             android:layout_width="match_parent"
@@ -54,7 +55,8 @@
             android:inputType="numberDecimal"
             android:ems="10"
             android:id="@+id/edit_val_b"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textAlignment="center" />
 
         <TextView
             android:text="TextView"
@@ -65,7 +67,9 @@
             android:id="@+id/text_ans"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:textAlignment="center" />
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
