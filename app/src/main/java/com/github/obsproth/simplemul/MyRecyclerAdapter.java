@@ -58,6 +58,11 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         recyclerView.scrollToPosition(dataList.size() - 1);
     }
 
+    void removeItem(int position) {
+        dataList.remove(position);
+        notifyItemRemoved(position);
+    }
+
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView textValA, textValB, textOperator, textAns;
 

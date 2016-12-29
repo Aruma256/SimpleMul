@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -38,6 +39,19 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Comp
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new MyRecyclerAdapter(this);
         recyclerView.setAdapter(adapter);
+        new ItemTouchHelper(
+                new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+                    @Override
+                    public boolean onMove(RecyclerView recyclerView, RecyclerView.ViewHolder viewHolder, RecyclerView.ViewHolder target) {
+                        return false;
+                    }
+
+                    @Override
+                    public void onSwiped(RecyclerView.ViewHolder viewHolder, int direction) {
+                        int position = viewHolder.getAdapterPosition();
+                        adapter.removeItem(position);
+                    }
+                }).attachToRecyclerView(recyclerView);
         valA.addTextChangedListener(this);
         valB.addTextChangedListener(this);
         switchView.setOnCheckedChangeListener(this);
