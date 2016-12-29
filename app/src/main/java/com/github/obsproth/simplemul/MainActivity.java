@@ -86,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Comp
             a = Double.parseDouble(valA.getText().toString());
             b = Double.parseDouble(valB.getText().toString());
         } catch (NumberFormatException e) {
+            return;
         }
         isMul = !switchView.isChecked();
         if (isMul) {
