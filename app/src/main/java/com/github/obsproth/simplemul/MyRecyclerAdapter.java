@@ -32,7 +32,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         holder.textValA.setText(String.valueOf(formula.valA));
         holder.textValB.setText(String.valueOf(formula.valB));
         holder.textOperator.setText(formula.isMul ? String.valueOf("*") : String.valueOf("/"));
-        holder.textAns.setText(String.valueOf(formula.ans));
+        holder.textAns.setText(formula.ansStr);
     }
 
     @Override

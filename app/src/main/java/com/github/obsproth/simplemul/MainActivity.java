@@ -22,8 +22,9 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Comp
     private Switch switchView;
     private Button button;
 
-    private double a, b, ans;
+    private double a, b;
     private boolean isMul;
+    private String ansStr;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Comp
 
     @Override
     public void onClick(View view) {
-        adapter.addItem(new Formula(a, b, isMul, ans));
+        adapter.addItem(new Formula(a, b, isMul, ansStr));
     }
 
     private void update() {
@@ -89,12 +90,14 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Comp
             return;
         }
         isMul = !switchView.isChecked();
+        double ans;
         if (isMul) {
             ans = a * b;
         } else {
             ans = b != 0 ? a / b : Double.NaN;
         }
-        ansText.setText(String.valueOf(ans));
+        ansStr = String.format("%.3f", ans);
+        ansText.setText(ansStr);
     }
 
 }
