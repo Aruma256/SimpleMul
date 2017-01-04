@@ -63,7 +63,7 @@ public class MyRecyclerAdapter extends RecyclerView.Adapter<MyRecyclerAdapter.Vi
         notifyItemRemoved(position);
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
         TextView textValA, textValB, textOperator, textAns;
 
         ViewHolder(View itemView) {
