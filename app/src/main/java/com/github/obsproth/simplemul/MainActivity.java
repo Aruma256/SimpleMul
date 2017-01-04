@@ -79,24 +79,26 @@ public class MainActivity extends AppCompatActivity implements TextWatcher, Comp
 
     @Override
     public void onClick(View view) {
-        adapter.addItem(new Formula(a, b, isMul, ansStr));
+        if (ansStr != null) {
+            adapter.addItem(new Formula(a, b, isMul, ansStr));
+        }
     }
 
     private void update() {
         try {
             a = Double.parseDouble(valA.getText().toString());
             b = Double.parseDouble(valB.getText().toString());
+            isMul = !switchView.isChecked();
+            if (isMul) {
+                ansStr = String.format("%.3f", a * b);
+            } else if (b != 0) {
+                ansStr = String.format("%.3f", a / b);
+            } else {
+                ansStr = null;
+            }
         } catch (NumberFormatException e) {
-            return;
+            ansStr = null;
         }
-        isMul = !switchView.isChecked();
-        double ans;
-        if (isMul) {
-            ans = a * b;
-        } else {
-            ans = b != 0 ? a / b : Double.NaN;
-        }
-        ansStr = String.format("%.3f", ans);
         ansText.setText(ansStr);
     }
 
