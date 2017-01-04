@@ -41,7 +41,7 @@
         android:id="@+id/linear_layout_main_activity">
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
@@ -50,7 +50,7 @@
             android:textAlignment="center" />
 
         <EditText
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:inputType="numberDecimal"
             android:ems="10"
@@ -59,7 +59,7 @@
             android:textAlignment="center" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/text_ans"
             android:layout_weight="1"
